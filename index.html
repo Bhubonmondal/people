@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta charset="UTF-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>6 people's fund</title>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+       <style>
+              #yearPart{
+                     text-align: center;
+              }
+              #showGreeting{
+                     float: right;
+              }
+              #monthPart{
+                     text-align: center;
+              }
+              #nxtBtn{
+                     font-size: 30px;
+              }
+              #prevBtn{
+                     font-size: 30px;
+              }
+              #output{
+                     font-size: 40px;
+              }
+              #showYear{
+                     font-size: 45px;
+                     margin-left: 50px;
+              }
+              ul{
+                     list-style: none;
+              }
+              li{
+                     font-size: 24px;
+              }
+              table, th, td {
+                     border: 1px solid black;
+                     border-collapse: collapse;
+
+              }
+              input::-webkit-outer-spin-button,
+              input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+              }
+
+              /* Firefox 
+              input[type=number] {
+              -moz-appearance: textfield;
+              }*/
+              select {
+                     border: none;
+                     outline: none;
+                     scroll-behavior: smooth;
+                     background-color: white;
+              }
+              input[type="number"]{
+                     border: none;
+                     width: 80px;
+                     
+              }
+              input[type="number"]:focus{
+                     outline: none;
+              }
+       </style>
+</head>
+<body>
+<div id="navBar">
+              
+       <div id="monthPart">
+              <span id="nxtBtn" onclick="showPreviousMonth()"><i class="fa-solid fa-chevron-left"></i></span>
+              <span id="output" onclick="showMoreMonthsName()"></span>
+              <span id="prevBtn" onclick="showNextMonth()"><i class="fa-solid fa-chevron-right"></i></span>
+              <ul id="displayGateOpen" style="display: none;">
+                     <li onclick="January()">January</li>
+                     <li >February</li>
+                     <li>March</li>
+                     <li>April</li>
+                     <li>May</li>
+                     <li>June</li>
+                     <li>July</li>
+                     <li>August</li>
+                     <li>September</li>
+                     <li>October</li>
+                     <li>November</li>
+                     <li>December</li>
+              </ul>
+       </div>  
+</div>  
+
+
+<div id="mainContent">
+       <table id="myTabelContent">
+              <tr>
+                     <th>ID</th>
+                     <th>Name</th>
+                     <th>Date</th>
+                     <th>Credit</th>
+                     <th>Debit</th>
+                     <th>Intrest</th>
+              </tr>
+              
+             
+       </table>
+</div>
+</body>
+<script>
+       
+
+       let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+       let defaultMonth=9;
+       let index = 0;
+       let people = ['Bhakta Mondal', 'Samiran Mondal', 'Uttam Mondal', 'Raja Mondal', 'Bittu Mondal', 'Krishna Udhay']
+       let i = 0;
+       let monthCounterKeeper=31;
+       let store;
+      
+       document.getElementById('output').innerHTML = months[defaultMonth];
+
+
+function showNextMonth() {
+       defaultMonth++;
+       
+  if (defaultMonth >= months.length) {
+       defaultMonth = 0;
+  }
+  let store = defaultMonth;
+  console.log(months[defaultMonth]); 
+  
+  if(months[defaultMonth] === 'January' || months[defaultMonth] === 'March' || months[defaultMonth] === 'May' || months[defaultMonth] === 'July' || months[defaultMonth] === 'August' || months[defaultMonth] === 'October' || months[defaultMonth] === 'December') 
+       {
+              if(months[defaultMonth] === 'January' || months[defaultMonth] === 'March' || months[defaultMonth] === 'May' || months[defaultMonth] === 'July' || months[defaultMonth] === 'August'){
+              let year=23
+              monthCounterKeeper=31;
+              
+              let start = 0;
+              let dates=1;
+              let table = document.getElementById("myTabelContent");
+              console.log(dates+'th '+months[defaultMonth]);
+              for(i=0;i<monthCounterKeeper;i++){
+              for (let i = 0; i < people.length; i++) {
+                     start++;
+              let row = table.insertRow();
+              let IDCell = row.insertCell();
+              let nameCell = row.insertCell();
+              let dateCell = row.insertCell();
+              let creditCell = row.insertCell();
+              let debitCell = row.insertCell();
+              let interestCell = row.insertCell();
+              IDCell.innerHTML = start;
+              nameCell.innerHTML = people[i];
+              dateCell.innerHTML = dates+'/'+store+'/'+year;
+              creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                          <option value=""></option>
+                                          <option value="100">100</option>
+                                   </select>`;
+              debitCell.innerHTML = `<input type="number">`
+              interestCell.innerHTML = `<input type="number">`
+              if(start>=6){
+                     start=0;
+                     dates++;
+              }
+                            }
+              } 
+              }  
+       }
+       else if(months[defaultMonth] === 'April' || months[defaultMonth] === 'June' || months[defaultMonth] === 'September' || months[defaultMonth] === 'November'){
+              monthCounterKeeper=30;
+              console.log(30);
+              let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }   
+       }
+       else{
+              monthCounterKeeper=28;
+              console.log(28);
+              let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }   
+       }
+       document.getElementById('output').innerHTML = months[defaultMonth];
+}
+
+function showPreviousMonth() 
+{
+       defaultMonth--;
+
+       if (defaultMonth < 0) 
+       {
+              defaultMonth = months.length - 1;
+       }
+       console.log(defaultMonth); 
+       if (months[defaultMonth] === 'January' || months[defaultMonth] === 'March' || months[defaultMonth] === 'May' || months[defaultMonth] === 'July' || months[defaultMonth] === 'August' || months[defaultMonth] === 'October' || months[defaultMonth] === 'December') 
+       {
+              monthCounterKeeper = 31;
+              console.log(31);
+              //show table
+              
+                     let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }
+       } 
+       else if (months[defaultMonth] === 'April' || months[defaultMonth] === 'June' || months[defaultMonth] === 'September' || months[defaultMonth] === 'November') {
+              monthCounterKeeper = 30;
+              console.log(30);
+              //show table
+                     let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }
+       } else {
+              monthCounterKeeper = 28;
+              console.log(28);
+              //show table
+              
+              let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }
+       }
+       document.getElementById('output').innerHTML = months[defaultMonth];
+       
+}
+
+function showMoreMonthsName()
+{
+       if(document.getElementById('displayGateOpen').style.display==="none")
+       {
+              document.getElementById('displayGateOpen').style.display="block";
+       }
+       else
+       {
+              document.getElementById('displayGateOpen').style.display="none";
+       }
+}  
+/*
+       if(months[defaultMonth] === 'January' || months[defaultMonth] === 'March' || months[defaultMonth] === 'May' || months[defaultMonth] === 'July' || months[defaultMonth] === 'August' || months[defaultMonth] === 'October' || months[defaultMonth] === 'December') 
+       {
+              monthCounterKeeper=31;
+              console.log(31);
+              //show table
+              
+              let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }
+       }
+       else if(months[defaultMonth] === 'April' || months[defaultMonth] === 'June' || months[defaultMonth] === 'September' || months[defaultMonth] === 'November'){
+              monthCounterKeeper=30;
+              console.log(30);
+              //show table
+              
+              let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }
+       }
+       else{
+              monthCounterKeeper=28;
+              console.log(28);
+              //show table
+              
+              let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }
+       }
+
+       */
+//show table
+              
+                     let start = 0;
+                     let dates=1;
+                     let table = document.getElementById("myTabelContent");
+                     
+                     for(i=0;i<monthCounterKeeper;i++){
+
+                     for (let i = 0; i < people.length; i++) {
+                            start++;
+                     let row = table.insertRow();
+                     let IDCell = row.insertCell();
+                     let nameCell = row.insertCell();
+                     let dateCell = row.insertCell();
+                     let creditCell = row.insertCell();
+                     let debitCell = row.insertCell();
+                     let interestCell = row.insertCell();
+                     IDCell.innerHTML = start;
+                     nameCell.innerHTML = people[i];
+                     dateCell.innerHTML = dates+"/09/22";
+                     creditCell.innerHTML = `<select name="CreditAmount" id="CreditAmount">
+                                                 <option value=""></option>
+                                                 <option value="100">100</option>
+                                          </select>`;
+                     debitCell.innerHTML = `<input type="number">`
+                     interestCell.innerHTML = `<input type="number">`
+                     if(start>=6){
+                            start=0;
+                            dates++;
+                     }
+                                   }
+
+                     }   
+
+              
+              
+              
+</script>
+</html>
